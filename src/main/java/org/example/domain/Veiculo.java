@@ -1,14 +1,14 @@
 package org.example.domain;
 
 public class Veiculo {
-    private int id;
+    private Integer id;
     private String modelo;
     private String fabricante;
     private int ano;
     private double preco;
 
     public Veiculo(){}
-    public Veiculo(int id, String modelo, String fabricante, int ano, double preco) {
+    public Veiculo(Integer id, String modelo, String fabricante, int ano, double preco) {
         this.id = id;
         this.modelo = modelo;
         this.fabricante = fabricante;
@@ -16,7 +16,7 @@ public class Veiculo {
         this.preco = preco;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
