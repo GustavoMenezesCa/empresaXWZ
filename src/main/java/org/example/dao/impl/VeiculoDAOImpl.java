@@ -175,7 +175,7 @@ public class VeiculoDAOImpl implements VeiculoDAO {
     }
 
     @Override
-    public boolean excluir(int id) {
+    public boolean excluir(Long id) {
         String sql = "DELETE FROM veiculos WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

@@ -44,7 +44,7 @@ public interface VeiculoDAO {
      * @param id O ID do veículo a ser excluído.
      * @return true se a exclusão foi bem-sucedida, false caso contrário.
      */
-    boolean excluir(int id);
+    boolean excluir(Long id);
 
     /**
      * Consulta veículos com base em filtros.

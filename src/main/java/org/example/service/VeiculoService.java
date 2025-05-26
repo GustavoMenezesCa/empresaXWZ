@@ -29,4 +29,8 @@ public class VeiculoService {
         return null;
     }
 
+    public boolean excluirVeiculo(Long id){
+        return veiculoDAO.excluir(id);
+    }
+
 }
