@@ -2,8 +2,10 @@
 package org.example;
 
 import org.example.config.DatabaseSetup; // IMPORTAR
-import org.example.dao.VeiculoRepository;
-import org.example.dao.impl.VeiculoRepositoryImpl;
+import org.example.dao.VeiculoDAO;
+
+import org.example.dao.impl.VeiculoDAOImpl;
+
 import org.example.domain.Carro;
 
 import java.sql.SQLException; // IMPORTAR
@@ -24,7 +26,7 @@ public class RepositoryTest {
         }
 
         // **PASSO 2: Proceder com os Testes do Repositório**
-        VeiculoRepository repository = new VeiculoRepositoryImpl();
+        VeiculoDAO repository = new VeiculoDAOImpl();
         System.out.println("--- INICIANDO TESTES DO REPOSITÓRIO ---");
 
         // ... (resto dos seus testes: salvar carro, salvar moto, listar, etc.) ...

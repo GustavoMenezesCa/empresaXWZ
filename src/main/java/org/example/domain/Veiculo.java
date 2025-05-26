@@ -8,13 +8,14 @@ public class Veiculo {
     private double preco;
 
     public Veiculo(){}
-    public Veiculo(Integer id, String modelo, String fabricante, int ano, double preco) {
-        this.id = id;
+    public Veiculo(String modelo, String fabricante, int ano, double preco) {
         this.modelo = modelo;
         this.fabricante = fabricante;
         this.ano = ano;
         this.preco = preco;
     }
+
+
 
     public Integer getId() {
         return id;
