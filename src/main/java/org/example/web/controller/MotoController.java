@@ -30,13 +30,13 @@ public class MotoController {
     }
 
 
-    /*@PostMapping("/cadastro")
-    public ResponseEntity<Object> cadastroMoto(MotoCadastroForm motoCadastroForm){
+    @PostMapping("/cadastro")
+    public ResponseEntity<Object> cadastroMoto(@RequestBody MotoCadastroForm motoCadastroForm){
 
         Moto moto = motoService.cadastraMoto(motoCadastroForm);
 
         return ResponseEntity.status(HttpStatus.OK).body(moto);
-    }*/
+    }
 
 
 
@@ -50,27 +50,22 @@ public class MotoController {
 
         List<VeiculoResponse> veiculos = veiculoService.consultarVeiculos(tipo, modelo, cor, ano);
         return veiculos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(veiculos);
-    }
+    }*/
 
 
-    @GetMapping("/consultar/todos")
+    /*@GetMapping("/consultar/todos")
     public ResponseEntity<List<Veiculo>> listarVeiculos(){
         List<Veiculo> listaVeiculos = veiculoService.listarVeiculosCadastrados();
         return ResponseEntity.status(HttpStatus.OK).body(listaVeiculos);
-    }
+    }*/
 
     @DeleteMapping("/excluir/{id}")
     public ResponseEntity<Object> excluirVeiculo(@PathVariable(value = "id") Long id){
-        Moto moto = motoService.findBy(id)
-                .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Moto não encontrada.")
-                );
-
-        motoService.excluirMoto(moto);
+        veiculoService.excluirVeiculo(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/atualizarVeiculo/{id}")
+    /*@PutMapping("/atualizarVeiculo/{id}")
     public ResponseEntity<Moto> atualizarVeiculo(@PathVariable(value = "id") Long id,
                                                  @RequestBody MotoCadastroForm motoCadastroForm){
 
@@ -80,8 +75,7 @@ public class MotoController {
                 );
         Moto motoSalva = motoService.atualizarMoto(moto, motoCadastroForm);
         return ResponseEntity.status(HttpStatus.OK).build(motoSalva);
-    }
-*/
+    }*/
 
 
 }

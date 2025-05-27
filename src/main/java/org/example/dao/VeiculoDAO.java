@@ -11,9 +11,9 @@ import java.util.Optional;
 public interface VeiculoDAO {
 
 
-    Veiculo cadastrarCarro(Veiculo veiculo);
+    void excluirVeiculo(Long id) throws SQLException;
 
-    Carro cadastrarCarro(Carro carro) throws SQLException;
+
    /* Veiculo buscarPorId(Long id);
 
 

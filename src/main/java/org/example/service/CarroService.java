@@ -1,5 +1,6 @@
 package org.example.service;
 
+import org.example.dao.CarroDAO;
 import org.example.dao.VeiculoDAO;
 import org.example.domain.Carro;
 import org.example.domain.Veiculo;
@@ -12,22 +13,20 @@ import java.util.List;
 @Service
 public class CarroService {
 
-    private final VeiculoDAO veiculoDAO;
+    private final CarroDAO carroDAO;
 
-
-
-    public CarroService(VeiculoDAO veiculoDAO){
-        this.veiculoDAO = veiculoDAO;
+    public CarroService(CarroDAO carroDAO) {
+        this.carroDAO = carroDAO;
     }
 
-    public Carro cadastraCarro(CarroCadastroForm carroCadastroForm){
+    public Carro cadastraCarro(CarroCadastroForm carroCadastroForm) {
         if (carroCadastroForm.modelo() == null || carroCadastroForm.fabricante() == null || carroCadastroForm.ano() == null ||
                 carroCadastroForm.preco() == null || carroCadastroForm.quantidadePortas() == null || carroCadastroForm.tipoCombustivel() == null) {
             throw new IllegalArgumentException("Todos os campos são obrigatórios para cadastro de um carro.");
         }
         Carro carro = Carro.fromDto(carroCadastroForm);
         try {
-            veiculoDAO.cadastrarCarro(carro);
+            carroDAO.cadastrarCarro(carro);
             return carro;
         } catch (RuntimeException e) {
             throw new RuntimeException("Erro ao salvar o carro no banco de dados.", e);
@@ -36,20 +35,20 @@ public class CarroService {
         }
     }
 
-   /* public void excluirCarro(Carro carro) {
-
-        try {
-            Carro carro = veiculoDAO.excluir(carro);
-            return carro;
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Erro ao excluir carro no banco de dados.", e);
-        }
+    public List<Carro> listaCarroFiltrados(String modelo, String cor, Integer ano) throws SQLException {
+        List<Carro> list = carroDAO.consultarCarros(modelo, cor, ano);
+        return list;
     }
 
 
+
+
+/*
     public Carro atualizarCarro(Carro carro, CarroCadastroForm carroCadastroForm){
         carro.atualizaDados(carroCadastroForm);
 
         return veiculoDAO.salvar(carro);
-    }*/
+    }
+    */
+
 }

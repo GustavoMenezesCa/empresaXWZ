@@ -6,6 +6,7 @@ import org.example.service.CarroService;
 import org.example.service.VeiculoService;
 import org.example.web.dto.CarroCadastroForm;
 
+import org.example.web.dto.CarroUpdateForm;
 import org.example.web.dto.VeiculoResponse;
 import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -39,16 +41,13 @@ public class CarroController {
 
 
 
-    /*@GetMapping("/consultar")
-    public ResponseEntity<List<VeiculoResponse>> consultarVeiculos(
-            @RequestParam(required = false) String tipo,
-            @RequestParam(required = false) String modelo,
-            @RequestParam(required = false) String cor,
-            @RequestParam(required = false) Integer ano) {
+    @GetMapping("/consultar")
+    public ResponseEntity<List<Carro>> listarCarro(@RequestBody CarroUpdateForm carroUpdateForm) throws SQLException {
 
-        List<VeiculoResponse> veiculos = veiculoService.ca(tipo, modelo, cor, ano);
-        return veiculos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(veiculos);
-    }*/
+        List<Carro> carro = carroService.listaCarroFiltrados(carroUpdateForm.modelo(), carroUpdateForm.cor(), carroUpdateForm.ano());
+        return ResponseEntity.status(HttpStatus.OK).body(carro);
+    }
+
 
 
    /* @GetMapping("/consultar/todos")
@@ -57,18 +56,14 @@ public class CarroController {
         return ResponseEntity.status(HttpStatus.OK).body(listaVeiculos);
     }*/
 
-   /* @DeleteMapping("/excluir/{Id}")
+   @DeleteMapping("/excluir/{Id}")
     public ResponseEntity<Object> excluirVeiculo(@PathVariable(value = "Id") Long id){
-        Carro carro = carroService.findBy(id)
-                .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrado.")
-                );
 
-        carroService.excluirCarro(carro);
+        veiculoService.excluirVeiculo(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    @PutMapping("/atualizarVeiculo")
+    /*@PutMapping("/atualizarVeiculo")
     public ResponseEntity<Carro> atualizarVeiculo(@RequestBody CarroCadastroForm carroCadastroForm){
 
         Carro carro = carroService.findBy(id)

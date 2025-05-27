@@ -12,6 +12,10 @@ public enum TipoCombustivel {
         String tipoCombustivelFormat = tipoCombustivel.trim().toUpperCase();
         return TipoCombustivel.valueOf(tipoCombustivelFormat);
     }
+
+    public static String fromTipoCombustivel(TipoCombustivel tipoCombustivel){
+        return tipoCombustivel.toString();
+    }
 }
 
 
