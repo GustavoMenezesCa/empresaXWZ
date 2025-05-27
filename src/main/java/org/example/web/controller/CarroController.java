@@ -30,7 +30,7 @@ public class CarroController {
         this.veiculoService = veiculoService;
     }
 
-    //cadatrar veiculo
+
     @PostMapping("/cadastro")
     public ResponseEntity<Object> cadastraCarro(@RequestBody CarroCadastroForm carroCadastroForm){
 
@@ -38,7 +38,6 @@ public class CarroController {
 
         return ResponseEntity.status(HttpStatus.OK).body(carro);
     }
-
 
 
     @GetMapping("/consultar")
@@ -50,18 +49,7 @@ public class CarroController {
 
 
 
-    @GetMapping("/consultar/todos")
-    public ResponseEntity<List<Veiculo>> listarVeiculos(){
-        List<Veiculo> listaVeiculos = veiculoService.listarVeiculosCadastrados();
-        return ResponseEntity.status(HttpStatus.OK).body(listaVeiculos);
-    }
 
-   @DeleteMapping("/excluir/{Id}")
-    public ResponseEntity<Object> excluirVeiculo(@PathVariable(value = "Id") Long id){
-
-        veiculoService.excluirVeiculo(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
 
     /*@PutMapping("/atualizarVeiculo")
     public ResponseEntity<Carro> atualizarVeiculo(@RequestBody CarroCadastroForm carroCadastroForm){
