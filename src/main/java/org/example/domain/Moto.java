@@ -1,6 +1,6 @@
 package org.example.domain;
 
-import org.example.web.dto.motoCadastroForm;
+
 import org.example.web.dto.MotoCadastroForm;
 
 public class Moto extends Veiculo {
@@ -39,4 +39,4 @@ public class Moto extends Veiculo {
         return this;
     }
 }
-}
+
