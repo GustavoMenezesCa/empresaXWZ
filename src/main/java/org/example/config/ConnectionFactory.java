@@ -1,3 +1,4 @@
+/*
 package org.example.config;
 
 import java.sql.Connection;
@@ -21,19 +22,23 @@ public class ConnectionFactory {
         }
     }
 
-    /**
+    */
+/**
      * Obtém uma conexão com o banco de dados configurado.
      * @return uma instância de Connection.
      * @throws SQLException se ocorrer um erro ao obter a conexão.
-     */
+     *//*
+
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL_DB, USER, PASSWORD);
     }
 
-    /**
+    */
+/**
      * Método main para teste rápido e individual da conexão com o banco de dados.
      * Não executa setup de tabelas.
-     */
+     *//*
+
     public static void main(String[] args) {
         System.out.println("--- Testando Conexão com o Banco de Dados ---");
         System.out.println("Tentando conectar a: " + URL_DB + " com usuário: " + USER);
@@ -71,4 +76,4 @@ public class ConnectionFactory {
             e.printStackTrace();
         }
     }
-}
+}*/

@@ -7,7 +7,7 @@ import java.util.List;
 public record VeiculoResponse(String modelo,
                               String fabricante,
                               Integer ano,
-                              Double preco ) {
+                              Double preco) {
 
 
     public static List<VeiculoResponse> fromEntity (List<Veiculo> usuarios){

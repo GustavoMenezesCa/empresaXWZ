@@ -3,11 +3,12 @@ package org.example.service;
 import org.example.dao.VeiculoDAO;
 import org.example.domain.Veiculo;
 import org.example.web.dto.VeiculoResponse;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class VeiculoService {
 
     private final VeiculoDAO veiculoDAO;
@@ -16,9 +17,9 @@ public class VeiculoService {
         this.veiculoDAO = veiculoDAO;
     }
 
-    public List<Veiculo> listarVeiculosCadastrados(){
+    /*public List<Veiculo> listarVeiculosCadastrados(){
         return veiculoDAO.listarTodos();
-    }
+    }*/
 
     /*public List<VeiculoResponse> listarTodosVeiculosCadastrados() {
         try {
@@ -33,7 +34,7 @@ public class VeiculoService {
         }
     }*/
 
-    public List<VeiculoResponse> consultarVeiculos(String tipo, String modelo, String cor, Integer ano) {
+   /* public List<VeiculoResponse> consultarVeiculos(String tipo, String modelo, String cor, Integer ano) {
         try {
             List<Veiculo> veiculosConsultados = veiculoDAO.consultarComFiltros(tipo, modelo, cor, ano);
             return VeiculoResponse.fromEntity(veiculosConsultados);
@@ -41,7 +42,7 @@ public class VeiculoService {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao consultar veículos.", e);
         }
-    }
+    }*/
 
 }
 

@@ -30,7 +30,7 @@ public class CarroController {
 
     //cadatrar veiculo
     @PostMapping("/cadastro")
-    public ResponseEntity<Object> cadastraCarro(CarroCadastroForm carroCadastroForm){
+    public ResponseEntity<Object> cadastraCarro(@RequestBody CarroCadastroForm carroCadastroForm){
 
         Carro carro = carroService.cadastraCarro(carroCadastroForm);
 
@@ -39,25 +39,25 @@ public class CarroController {
 
 
 
-    @GetMapping("/consultar")
+    /*@GetMapping("/consultar")
     public ResponseEntity<List<VeiculoResponse>> consultarVeiculos(
             @RequestParam(required = false) String tipo,
             @RequestParam(required = false) String modelo,
             @RequestParam(required = false) String cor,
             @RequestParam(required = false) Integer ano) {
 
-        List<VeiculoResponse> veiculos = veiculoService.consultarVeiculos(tipo, modelo, cor, ano);
+        List<VeiculoResponse> veiculos = veiculoService.ca(tipo, modelo, cor, ano);
         return veiculos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(veiculos);
-    }
+    }*/
 
 
-    @GetMapping("/consultar/todos")
+   /* @GetMapping("/consultar/todos")
     public ResponseEntity<List<Veiculo>> listarVeiculos(){
         List<Veiculo> listaVeiculos = veiculoService.listarVeiculosCadastrados();
         return ResponseEntity.status(HttpStatus.OK).body(listaVeiculos);
-    }
+    }*/
 
-    @DeleteMapping("/excluir/{Id}")
+   /* @DeleteMapping("/excluir/{Id}")
     public ResponseEntity<Object> excluirVeiculo(@PathVariable(value = "Id") Long id){
         Carro carro = carroService.findBy(id)
                 .orElseThrow(() ->
@@ -69,7 +69,7 @@ public class CarroController {
     }
 
     @PutMapping("/atualizarVeiculo")
-    public ResponseEntity<Carro> atualizarVeiculo(CarroCadastroForm carroCadastroForm){
+    public ResponseEntity<Carro> atualizarVeiculo(@RequestBody CarroCadastroForm carroCadastroForm){
 
         Carro carro = carroService.findBy(id)
                 .orElseThrow(() ->
@@ -77,7 +77,7 @@ public class CarroController {
                 );
         Carro carroSalvo = carroService.atualizarCarro(carro, carroCadastroForm);
         return ResponseEntity.status(HttpStatus.OK).build(carroSalvo);
-    }
+    }*/
 }
 
 

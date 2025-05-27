@@ -1,3 +1,4 @@
+/*
 // Pacote: org.example
 package org.example;
 
@@ -53,4 +54,4 @@ public class RepositoryTest {
 
         System.out.println("\n--- TESTES DO REPOSITÓRIO FINALIZADOS ---");
     }
-}
+}*/

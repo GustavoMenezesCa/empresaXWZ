@@ -7,6 +7,7 @@ public record CarroCadastroForm(
                                     String fabricante,
                                     Integer ano,
                                     Double preco,
+                                    String cor,
                                     Integer quantidadePortas,
                                     String tipoCombustivel
                                     ) {

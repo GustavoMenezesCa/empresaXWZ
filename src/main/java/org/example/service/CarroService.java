@@ -4,9 +4,12 @@ import org.example.dao.VeiculoDAO;
 import org.example.domain.Carro;
 import org.example.domain.Veiculo;
 import org.example.web.dto.CarroCadastroForm;
+import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 
+@Service
 public class CarroService {
 
     private final VeiculoDAO veiculoDAO;
@@ -24,14 +27,16 @@ public class CarroService {
         }
         Carro carro = Carro.fromDto(carroCadastroForm);
         try {
-            veiculoDAO.salvar(carro);
+            veiculoDAO.cadastrarCarro(carro);
             return carro;
         } catch (RuntimeException e) {
             throw new RuntimeException("Erro ao salvar o carro no banco de dados.", e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
-    public void excluirCarro(Carro carro) {
+   /* public void excluirCarro(Carro carro) {
 
         try {
             Carro carro = veiculoDAO.excluir(carro);
@@ -46,5 +51,5 @@ public class CarroService {
         carro.atualizaDados(carroCadastroForm);
 
         return veiculoDAO.salvar(carro);
-    }
+    }*/
 }

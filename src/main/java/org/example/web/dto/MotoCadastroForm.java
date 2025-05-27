@@ -4,5 +4,7 @@ public record MotoCadastroForm(String modelo,
                                String fabricante,
                                Integer ano,
                                Double preco,
-                               Integer cilindradas) {
+                               String cor,
+                               Integer cilindradas
+                               ) {
 }

@@ -30,22 +30,23 @@ public class MotoController {
     }
 
 
-    @PostMapping("/cadastro")
+    /*@PostMapping("/cadastro")
     public ResponseEntity<Object> cadastroMoto(MotoCadastroForm motoCadastroForm){
 
         Moto moto = motoService.cadastraMoto(motoCadastroForm);
 
         return ResponseEntity.status(HttpStatus.OK).body(moto);
-    }
+    }*/
 
 
 
-    @GetMapping("/consultar")
+   /* @GetMapping("/consultar")
     public ResponseEntity<List<VeiculoResponse>> consultarVeiculos(
             @RequestParam(required = false) String tipo,
             @RequestParam(required = false) String modelo,
-            @RequestParam(required = false) String cor,
-            @RequestParam(required = false) Integer ano) {
+            @RequestParam(required = false) String fabricante,
+            @RequestParam(required = false) Integer ano,
+            ) {
 
         List<VeiculoResponse> veiculos = veiculoService.consultarVeiculos(tipo, modelo, cor, ano);
         return veiculos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(veiculos);
@@ -80,7 +81,7 @@ public class MotoController {
         Moto motoSalva = motoService.atualizarMoto(moto, motoCadastroForm);
         return ResponseEntity.status(HttpStatus.OK).build(motoSalva);
     }
-
+*/
 
 
 }

@@ -1,3 +1,4 @@
+/*
 // Pacote: org.example.config
 package org.example.config;
 
@@ -7,13 +8,15 @@ import java.sql.Statement;
 
 public class DatabaseSetup {
 
-    /**
+    */
+/**
      * Inicializa o esquema do banco de dados.
      * Remove tabelas existentes (se houver) e cria as novas.
      * Ideal para ser chamado no início da aplicação ou antes de testes.
      *
      * @throws SQLException se ocorrer um erro durante o setup.
-     */
+     *//*
+
     public static void initializeDatabase() throws SQLException {
         String sqlDropMotos = "DROP TABLE IF EXISTS motos CASCADE;";
         String sqlDropCarros = "DROP TABLE IF EXISTS carros CASCADE;";
@@ -91,9 +94,11 @@ public class DatabaseSetup {
         }
     }
 
-    /**
+    */
+/**
      * Método main para testar o setup do banco de dados de forma isolada.
-     */
+     *//*
+
     public static void main(String[] args) {
         try {
             // Certifique-se que o BANCO DE DADOS 'empresaxwz_db' existe antes de rodar.
@@ -104,4 +109,4 @@ public class DatabaseSetup {
             // A exceção já foi impressa dentro de initializeDatabase
         }
     }
-}
+}*/

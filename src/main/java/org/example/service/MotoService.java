@@ -5,7 +5,9 @@ import org.example.domain.Carro;
 import org.example.domain.Moto;
 import org.example.web.dto.CarroCadastroForm;
 import org.example.web.dto.MotoCadastroForm;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MotoService {
 
     private final VeiculoDAO veiculoDAO;
@@ -14,7 +16,7 @@ public class MotoService {
         this.veiculoDAO = veiculoDAO;
     }
 
-    public Moto cadastraMoto(MotoCadastroForm motoCadastroForm){
+    /*public Moto cadastraMoto(MotoCadastroForm motoCadastroForm){
         if (motoCadastroForm.modelo() == null || motoCadastroForm.fabricante() == null || motoCadastroForm.ano() == null ||
                 motoCadastroForm.preco() == null || motoCadastroForm.cilindradas() == null) {
             throw new IllegalArgumentException("Todos os campos são obrigatórios para cadastro de um carro.");
@@ -26,9 +28,9 @@ public class MotoService {
         } catch (RuntimeException e) {
             throw new RuntimeException("Erro ao salvar o carro no banco de dados.", e);
         }
-    }
+    }*/
 
-    public void excluirMoto(Moto moto) {
+    /*public void excluirMoto(Moto moto) {
 
         try {
             Moto moto = veiculoDAO.excluir(moto);
@@ -43,5 +45,5 @@ public class MotoService {
         moto.atualizaDados(motoCadastroForm);
 
         return veiculoDAO.salvar(moto);
-    }
+    }*/
 }

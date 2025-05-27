@@ -15,8 +15,8 @@ public class Carro extends Veiculo {
         this.tipCombustivel = tipCombustivel;
     }
 
-    public Carro(String modelo, String fabricante, int ano, double preco, int quantPortas, TipoCombustivel tipCombustivel) {
-        super(modelo, fabricante, ano, preco);
+    public Carro(String modelo, String fabricante, int ano, double preco,String cor, int quantPortas, TipoCombustivel tipCombustivel) {
+        super(modelo, fabricante, ano, preco,cor, "CARRO");
         this.quantPortas = quantPortas;
         this.tipCombustivel = tipCombustivel;
     }
@@ -43,7 +43,7 @@ public class Carro extends Veiculo {
 
     public static Carro fromDto(CarroCadastroForm carroCadastroForm) {
         return new Carro(carroCadastroForm.modelo(), carroCadastroForm.fabricante(),
-                carroCadastroForm.ano(), carroCadastroForm.preco(),
+                carroCadastroForm.ano(), carroCadastroForm.preco(), carroCadastroForm.cor(),
                 carroCadastroForm.quantidadePortas(), TipoCombustivel.fromString(carroCadastroForm.tipoCombustivel()));
     }
 

@@ -8,13 +8,19 @@ public class Veiculo {
     private String fabricante;
     private int ano;
     private double preco;
+    private String cor;
+
+    private String tipoVeiculo;
+
 
     public Veiculo(){}
-    public Veiculo(String modelo, String fabricante, int ano, Double preco) {
+    public Veiculo(String modelo, String fabricante, int ano, Double preco, String cor, String tipoVeiculo) {
         this.modelo = modelo;
         this.fabricante = fabricante;
         this.ano = ano;
         this.preco = preco;
+        this.cor = cor;
+        this.tipoVeiculo = tipoVeiculo;
     }
 
 
