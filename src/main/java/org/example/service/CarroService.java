@@ -47,10 +47,4 @@ public class CarroService {
 
         return veiculoDAO.salvar(carro);
     }
-
-
-
-
-
-
 }

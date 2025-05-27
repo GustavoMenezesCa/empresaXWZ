@@ -78,9 +78,6 @@ public class CarroController {
         Carro carroSalvo = carroService.atualizarCarro(carro, carroCadastroForm);
         return ResponseEntity.status(HttpStatus.OK).build(carroSalvo);
     }
-
-
-
 }
 
 

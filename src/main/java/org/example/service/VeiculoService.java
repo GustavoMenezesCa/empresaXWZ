@@ -36,12 +36,9 @@ public class VeiculoService {
     public List<VeiculoResponse> consultarVeiculos(String tipo, String modelo, String cor, Integer ano) {
         try {
             List<Veiculo> veiculosConsultados = veiculoDAO.consultarComFiltros(tipo, modelo, cor, ano);
+            return VeiculoResponse.fromEntity(veiculosConsultados);
 
-            return veiculosConsultados.stream()
-                    .map(VeiculoResponse::fromEntity) // Reutiliza seu método de conversão
-                    .collect(Collectors.toList());
         } catch (SQLException e) {
-
             throw new RuntimeException("Erro ao consultar veículos.", e);
         }
     }

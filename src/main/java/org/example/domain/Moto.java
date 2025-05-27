@@ -1,6 +1,6 @@
 package org.example.domain;
 
-import org.example.web.dto.CarroCadastroForm;
+import org.example.web.dto.motoCadastroForm;
 import org.example.web.dto.MotoCadastroForm;
 
 public class Moto extends Veiculo {
@@ -29,4 +29,14 @@ public class Moto extends Veiculo {
                 motoCadastroForm.ano(), motoCadastroForm.preco(),
                 motoCadastroForm.cilindradas());
     }
+   
+    public Moto atualizaDados(MotoCadastroForm motoCadastroForm) {
+        if (motoCadastroForm.modelo() != null) setModelo(motoCadastroForm.modelo());
+        if (motoCadastroForm.fabricante() != null) setFabricante(motoCadastroForm.fabricante());
+        if (motoCadastroForm.ano() != null) setAno(motoCadastroForm.ano());
+        if (motoCadastroForm.preco() != null) setPreco(motoCadastroForm.preco());
+        if (motoCadastroForm.cilindradas() != null) setCilindradas(motoCadastroForm.cilindradas());
+        return this;
+    }
+}
 }
