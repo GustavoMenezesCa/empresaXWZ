@@ -1,19 +1,21 @@
 package org.example.domain;
 
-import org.example.web.dto.VeiculoCadastradoForm;
+import org.example.web.dto.CarroCadastroForm;
+
 
 public class Carro extends Veiculo {
     private int quantPortas;
     private TipoCombustivel tipCombustivel;
 
-    public Carro (){}
+    public Carro() {
+    }
 
     public Carro(int quantPortas, TipoCombustivel tipCombustivel) {
         this.quantPortas = quantPortas;
         this.tipCombustivel = tipCombustivel;
     }
 
-    public Carro( String modelo, String fabricante, int ano, double preco, int quantPortas, TipoCombustivel tipCombustivel) {
+    public Carro(String modelo, String fabricante, int ano, double preco, int quantPortas, TipoCombustivel tipCombustivel) {
         super(modelo, fabricante, ano, preco);
         this.quantPortas = quantPortas;
         this.tipCombustivel = tipCombustivel;
@@ -39,10 +41,20 @@ public class Carro extends Veiculo {
     }
 
 
-    public static Carro fromDto(VeiculoCadastradoForm veiculoCadastradoForm){
-        return new Carro(veiculoCadastradoForm.modelo(), veiculoCadastradoForm.fabricante(),
-                veiculoCadastradoForm.ano(), veiculoCadastradoForm.preco(),
-                veiculoCadastradoForm.quantidadePortas(), TipoCombustivel.fromString(veiculoCadastradoForm.tipoCombustivel()));
+    public static Carro fromDto(CarroCadastroForm carroCadastroForm) {
+        return new Carro(carroCadastroForm.modelo(), carroCadastroForm.fabricante(),
+                carroCadastroForm.ano(), carroCadastroForm.preco(),
+                carroCadastroForm.quantidadePortas(), TipoCombustivel.fromString(carroCadastroForm.tipoCombustivel()));
     }
 
+    public Carro atualizaDados(CarroCadastroForm carroCadastroForm) {
+        if (carroCadastroForm.modelo() != null) setModelo(carroCadastroForm.modelo());
+        if (carroCadastroForm.fabricante() != null) setFabricante(carroCadastroForm.fabricante());
+        if (carroCadastroForm.ano() != null) setAno(carroCadastroForm.ano());
+        if (carroCadastroForm.preco() != null) setPreco(carroCadastroForm.preco());
+        if (carroCadastroForm.quantidadePortas() != null) setQuantPortas(quantPortas);
+        if (tipCombustivel != null)
+            setTipCombustivel(tipCombustivel);
+        return this;
+    }
 }

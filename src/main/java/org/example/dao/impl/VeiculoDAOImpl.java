@@ -3,7 +3,7 @@ package org.example.dao.impl;
 
 import org.example.config.ConnectionFactory;
 import org.example.dao.VeiculoDAO;
-
+import org.example.dao.VeiculoRepository;
 import org.example.domain.Carro;
 import org.example.domain.Moto;
 import org.example.domain.Veiculo;
@@ -175,7 +175,7 @@ public class VeiculoDAOImpl implements VeiculoDAO {
     }
 
     @Override
-    public boolean excluir(Long id) {
+    public boolean excluir(int id) {
         String sql = "DELETE FROM veiculos WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

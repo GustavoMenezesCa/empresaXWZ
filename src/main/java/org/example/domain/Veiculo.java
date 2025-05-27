@@ -1,14 +1,16 @@
 package org.example.domain;
 
+import org.example.web.dto.VeiculoResponse;
+
 public class Veiculo {
-    private Integer id;
+    private Long id;
     private String modelo;
     private String fabricante;
     private int ano;
     private double preco;
 
     public Veiculo(){}
-    public Veiculo(String modelo, String fabricante, int ano, double preco) {
+    public Veiculo(String modelo, String fabricante, int ano, Double preco) {
         this.modelo = modelo;
         this.fabricante = fabricante;
         this.ano = ano;
@@ -17,11 +19,11 @@ public class Veiculo {
 
 
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -55,5 +57,10 @@ public class Veiculo {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public VeiculoResponse fromEntity(Veiculo veiculo){
+        return new VeiculoResponse(modelo, fabricante, ano,
+                preco);
     }
 }

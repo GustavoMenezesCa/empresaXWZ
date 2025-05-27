@@ -7,6 +7,7 @@ import org.example.dao.VeiculoDAO;
 import org.example.dao.impl.VeiculoDAOImpl;
 
 import org.example.domain.Carro;
+import org.example.domain.TipoCombustivel;
 
 import java.sql.SQLException; // IMPORTAR
 
@@ -39,7 +40,7 @@ public class RepositoryTest {
             carro1.setFabricante("Renault");
             // ... resto dos dados do carro1 ...
             carro1.setQuantPortas(4);
-            carro1.setTipCombustivel("FLEX");
+            carro1.setTipCombustivel(TipoCombustivel.FLEX);
             carroSalvo = (Carro) repository.salvar(carro1);
             System.out.println("  Carro salvo: " + carroSalvo);
             // ...

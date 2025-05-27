@@ -1,6 +1,7 @@
 package org.example.domain;
 
-import org.example.web.dto.VeiculoCadastradoForm;
+import org.example.web.dto.CarroCadastroForm;
+import org.example.web.dto.MotoCadastroForm;
 
 public class Moto extends Veiculo {
     private Integer cilindradas;
@@ -23,9 +24,9 @@ public class Moto extends Veiculo {
         this.cilindradas = cilindradas;
     }
 
-    public static Moto fromDto(VeiculoCadastradoForm veiculoCadastradoForm){
-        return new Moto(veiculoCadastradoForm.modelo(), veiculoCadastradoForm.fabricante(),
-                veiculoCadastradoForm.ano(), veiculoCadastradoForm.preco(),
-                veiculoCadastradoForm.cilindradas());
+    public static Moto fromDto(MotoCadastroForm motoCadastroForm){
+        return new Moto(motoCadastroForm.modelo(), motoCadastroForm.fabricante(),
+                motoCadastroForm.ano(), motoCadastroForm.preco(),
+                motoCadastroForm.cilindradas());
     }
 }
