@@ -89,7 +89,9 @@ public class VeiculoDAOImpl implements VeiculoDAO {
     } else {
         throw new SQLException("Tipo de veículo desconhecido: " + tipoVeiculo);
     }
-}
+    }
+
+
 }
 
 

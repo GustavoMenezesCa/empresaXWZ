@@ -48,19 +48,15 @@ public class CarroController {
     }
 
 
+    @PutMapping("/atualizarVeiculo/{id}")
+    public ResponseEntity<Carro> atualizarVeiculo(@PathVariable(value = "id") Long id,
+                                                  @RequestBody CarroCadastroForm carroCadastroForm){
 
+        Carro carro = carroService.findByid(id);
 
-
-    /*@PutMapping("/atualizarVeiculo")
-    public ResponseEntity<Carro> atualizarVeiculo(@RequestBody CarroCadastroForm carroCadastroForm){
-
-        Carro carro = carroService.findBy(id)
-                .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrado.")
-                );
         Carro carroSalvo = carroService.atualizarCarro(carro, carroCadastroForm);
-        return ResponseEntity.status(HttpStatus.OK).build(carroSalvo);
-    }*/
+        return ResponseEntity.status(HttpStatus.OK).body(carro);
+    }
 }
 
 

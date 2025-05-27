@@ -9,7 +9,6 @@ public class Veiculo {
     private int ano;
     private double preco;
     private String cor;
-
     private String tipoVeiculo;
 
 

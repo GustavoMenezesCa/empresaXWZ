@@ -34,20 +34,14 @@ public class MotoService {
         }
     }
 
-    /*public void excluirMoto(Moto moto) {
-
-        try {
-            Moto moto = veiculoDAO.excluir(moto);
-            return moto;
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Erro ao excluir carro no banco de dados.", e);
-        }
-    }
 
 
     public Moto atualizarMoto(Moto moto, MotoCadastroForm motoCadastroForm){
         moto.atualizaDados(motoCadastroForm);
+        return motoDAO.atualizar(moto);
+    }
 
-        return veiculoDAO.salvar(moto);
-    }*/
+    public Moto findByid(Long id){
+        return motoDAO.buscarPorId(id).orElseThrow();
+    }
 }

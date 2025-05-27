@@ -40,24 +40,6 @@ public class MotoController {
 
 
 
-   /* @GetMapping("/consultar")
-    public ResponseEntity<List<VeiculoResponse>> consultarVeiculos(
-            @RequestParam(required = false) String tipo,
-            @RequestParam(required = false) String modelo,
-            @RequestParam(required = false) String fabricante,
-            @RequestParam(required = false) Integer ano,
-            ) {
-
-        List<VeiculoResponse> veiculos = veiculoService.consultarVeiculos(tipo, modelo, cor, ano);
-        return veiculos.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(veiculos);
-    }*/
-
-
-    /*@GetMapping("/consultar/todos")
-    public ResponseEntity<List<Veiculo>> listarVeiculos(){
-        List<Veiculo> listaVeiculos = veiculoService.();
-        return ResponseEntity.status(HttpStatus.OK).body(listaVeiculos);
-    }*/
 
     @DeleteMapping("/excluir/{id}")
     public ResponseEntity<Object> excluirVeiculo(@PathVariable(value = "id") Long id){
@@ -65,17 +47,15 @@ public class MotoController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    /*@PutMapping("/atualizarVeiculo/{id}")
+    @PutMapping("/atualizarVeiculo/{id}")
     public ResponseEntity<Moto> atualizarVeiculo(@PathVariable(value = "id") Long id,
-                                                 @RequestBody MotoCadastroForm motoCadastroForm){
+                                                  @RequestBody MotoCadastroForm motoCadastroForm){
 
-        Moto moto = motoService.findBy(id)
-                .orElseThrow(() ->
-                        new ResponseStatusException(HttpStatus.NOT_FOUND, "Carro não encontrado.")
-                );
+        Moto moto = motoService.findByid(id);
+
         Moto motoSalva = motoService.atualizarMoto(moto, motoCadastroForm);
-        return ResponseEntity.status(HttpStatus.OK).build(motoSalva);
-    }*/
+        return ResponseEntity.status(HttpStatus.OK).body(moto);
+    }
 
 
 }

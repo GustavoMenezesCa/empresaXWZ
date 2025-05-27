@@ -35,6 +35,7 @@ public class Moto extends Veiculo {
         if (motoCadastroForm.fabricante() != null) setFabricante(motoCadastroForm.fabricante());
         if (motoCadastroForm.ano() != null) setAno(motoCadastroForm.ano());
         if (motoCadastroForm.preco() != null) setPreco(motoCadastroForm.preco());
+        if (motoCadastroForm.cor() != null) setCor(motoCadastroForm.cor());
         if (motoCadastroForm.cilindradas() != null) setCilindradas(motoCadastroForm.cilindradas());
         return this;
     }

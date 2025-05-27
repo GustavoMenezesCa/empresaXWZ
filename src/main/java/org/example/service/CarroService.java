@@ -15,8 +15,11 @@ public class CarroService {
 
     private final CarroDAO carroDAO;
 
-    public CarroService(CarroDAO carroDAO) {
+    private final VeiculoDAO veiculoDAO;
+
+    public CarroService(CarroDAO carroDAO, VeiculoDAO veiculoDAO) {
         this.carroDAO = carroDAO;
+        this.veiculoDAO = veiculoDAO;
     }
 
     public Carro cadastraCarro(CarroCadastroForm carroCadastroForm) {
@@ -41,14 +44,13 @@ public class CarroService {
     }
 
 
-
-
-/*
     public Carro atualizarCarro(Carro carro, CarroCadastroForm carroCadastroForm){
         carro.atualizaDados(carroCadastroForm);
-
-        return veiculoDAO.salvar(carro);
+        return carroDAO.atualizarCarro(carro);
     }
-    */
+
+    public Carro findByid(Long id){
+        return carroDAO.buscarPorId(id).orElseThrow();
+    }
 
 }

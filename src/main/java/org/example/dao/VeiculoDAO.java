@@ -16,7 +16,6 @@ public interface VeiculoDAO {
 
    /* Veiculo buscarPorId(Long id);
 
-
     List<Veiculo> listarTodos();
 
     Veiculo atualizar(Veiculo veiculo);

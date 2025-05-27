@@ -52,9 +52,10 @@ public class Carro extends Veiculo {
         if (carroCadastroForm.fabricante() != null) setFabricante(carroCadastroForm.fabricante());
         if (carroCadastroForm.ano() != null) setAno(carroCadastroForm.ano());
         if (carroCadastroForm.preco() != null) setPreco(carroCadastroForm.preco());
-        if (carroCadastroForm.quantidadePortas() != null) setQuantPortas(quantPortas);
-        if (tipCombustivel != null)
-            setTipCombustivel(tipCombustivel);
+        if (carroCadastroForm.cor() != null) setCor(carroCadastroForm.cor());
+        if (carroCadastroForm.quantidadePortas() != null) setQuantPortas(carroCadastroForm.quantidadePortas());
+        if (carroCadastroForm.tipoCombustivel() != null)
+            setTipCombustivel(TipoCombustivel.fromString(carroCadastroForm.tipoCombustivel()));
         return this;
     }
 }

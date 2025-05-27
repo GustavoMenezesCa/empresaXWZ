@@ -3,12 +3,16 @@ package org.example.dao.impl;
 
 import org.example.dao.CarroDAO;
 import org.example.domain.Carro;
+import org.example.domain.TipoCombustivel;
 import org.example.domain.Veiculo;
 import org.springframework.context.annotation.Configuration;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import static org.postgresql.util.JdbcBlackHole.close;
 
 @Configuration
 public class CarroDAOImpl implements CarroDAO {
@@ -23,6 +27,9 @@ public class CarroDAOImpl implements CarroDAO {
 
         return DriverManager.getConnection(conexao, usuario, senha);
     }
+
+
+
 
 
     public Carro cadastrarCarro(Carro carro) throws SQLException{
@@ -162,6 +169,89 @@ public class CarroDAOImpl implements CarroDAO {
             throw new SQLException("Erro ao consultar carros: " + e.getMessage(), e);
         }
         return carros;
+    }
+
+
+    public Carro atualizarCarro(Carro carro) {
+        if (carro.getId() == null) {
+            throw new IllegalArgumentException("ID do carro não pode ser nulo para atualização.");
+        }
+        Connection conn = null;
+        PreparedStatement pstmtVeiculo = null;
+        PreparedStatement pstmtCarro = null;
+
+        try {
+            conn = getConnection();
+            conn.setAutoCommit(false);
+
+            // Atualizar VEICULO
+            pstmtVeiculo = conn.prepareStatement("UPDATE VEICULO SET modelo = ?, fabricante = ?, ano = ?, cor = ?, preco = ? WHERE id = ?;");
+            pstmtVeiculo.setString(1, carro.getModelo());
+            pstmtVeiculo.setString(2, carro.getFabricante());
+            pstmtVeiculo.setInt(3, carro.getAno());
+            pstmtVeiculo.setString(4, carro.getCor());
+            pstmtVeiculo.setDouble(5, carro.getPreco());
+            pstmtVeiculo.setLong(6, carro.getId());
+            int veiculoRowsAffected = pstmtVeiculo.executeUpdate();
+
+            if (veiculoRowsAffected == 0) {
+                throw new SQLException("Nenhum veículo encontrado com o ID: " + carro.getId() + " para atualizar.");
+            }
+
+            // Atualizar CARRO
+            pstmtCarro = conn.prepareStatement("UPDATE CARRO SET quantidade_portas = ?, tipo_combustivel = ? WHERE id_veiculo = ?;");
+            pstmtCarro.setInt(1, carro.getQuantPortas());
+            pstmtCarro.setString(2, carro.getTipCombustivel().name());
+            pstmtCarro.setLong(3, carro.getId());
+            pstmtCarro.executeUpdate();
+
+            conn.commit();
+            return carro;
+
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                } catch (SQLException ex) {
+                    System.err.println("Erro ao fazer rollback: " + ex.getMessage());
+                }
+            }
+            throw new RuntimeException("Erro ao atualizar carro: " + e.getMessage(), e);
+        } finally {
+            close(pstmtCarro);
+            close(pstmtVeiculo);
+            close(conn);
+        }
+    }
+
+    public Optional<Carro> buscarPorId(Long id) {
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement("SELECT v.id, v.modelo, v.fabricante, v.ano, v.cor, v.preco, c.quantidade_portas, c.tipo_combustivel " +
+                     "FROM VEICULO v JOIN CARRO c ON v.id = c.id_veiculo WHERE v.id = ? AND v.tipo_veiculo = 'CARRO';")) {
+
+            pstmt.setLong(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return Optional.of(mapRowToCarro(rs));
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar carro por ID: " + e.getMessage(), e);
+        }
+        return Optional.empty();
+    }
+
+    private Carro mapRowToCarro(ResultSet rs) throws SQLException {
+        Carro carro = new Carro();
+        carro.setId(rs.getLong("id"));
+        carro.setModelo(rs.getString("modelo"));
+        carro.setFabricante(rs.getString("fabricante"));
+        carro.setAno(rs.getInt("ano"));
+        carro.setCor(rs.getString("cor"));
+        carro.setPreco(rs.getDouble("preco"));
+        carro.setQuantPortas(rs.getInt("quantidade_portas"));
+        carro.setTipCombustivel(TipoCombustivel.valueOf(rs.getString("tipo_combustivel")));
+        return carro;
     }
 
 
