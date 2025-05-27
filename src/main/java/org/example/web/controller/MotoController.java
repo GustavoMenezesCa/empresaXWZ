@@ -55,7 +55,7 @@ public class MotoController {
 
     /*@GetMapping("/consultar/todos")
     public ResponseEntity<List<Veiculo>> listarVeiculos(){
-        List<Veiculo> listaVeiculos = veiculoService.listarVeiculosCadastrados();
+        List<Veiculo> listaVeiculos = veiculoService.();
         return ResponseEntity.status(HttpStatus.OK).body(listaVeiculos);
     }*/
 

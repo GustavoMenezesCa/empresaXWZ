@@ -29,9 +29,9 @@ public class VeiculoService {
         }
     }
 
-    /*public List<Veiculo> listarVeiculosCadastrados(){
+    public List<Veiculo> listarVeiculosCadastrados(){
         return veiculoDAO.listarTodos();
-    }*/
+    }
 
     /*public List<VeiculoResponse> listarTodosVeiculosCadastrados() {
         try {

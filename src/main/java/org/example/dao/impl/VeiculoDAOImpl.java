@@ -3,11 +3,15 @@ package org.example.dao.impl;
 import jakarta.annotation.sql.DataSourceDefinition;
 import org.example.dao.VeiculoDAO;
 import org.example.domain.Carro;
+import org.example.domain.Moto;
+import org.example.domain.TipoCombustivel;
 import org.example.domain.Veiculo;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class VeiculoDAOImpl implements VeiculoDAO {
@@ -34,6 +38,59 @@ public class VeiculoDAOImpl implements VeiculoDAO {
             throw new SQLException("Erro ao excluir veículo com ID " + id + ": " + e.getMessage(), e);
         }
     }
+
+
+    public List<Veiculo> listarTodos() {
+        List<Veiculo> veiculos = new ArrayList<>();
+        try (Connection conn = getConnection();
+             Statement stmt = conn.createStatement(); // Query simples sem parâmetros
+             ResultSet rs = stmt.executeQuery( "SELECT v.id, v.modelo, v.fabricante, v.ano, v.cor, v.preco, v.tipo_veiculo, " +
+                     "c.quantidade_portas, c.tipo_combustivel, m.cilindradas " +
+                     "FROM VEICULO v " +
+                     "LEFT JOIN CARRO c ON v.id = c.id_veiculo AND v.tipo_veiculo = 'CARRO' " +
+                     "LEFT JOIN MOTO m ON v.id = m.id_veiculo AND v.tipo_veiculo = 'MOTO' " + "ORDER BY v.id")) {
+
+            while (rs.next()) {
+                veiculos.add(mapRowToVeiculo(rs));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao listar todos os veículos: " + e.getMessage(), e);
+        }
+        return veiculos;
+    }
+
+
+    private Veiculo mapRowToVeiculo(ResultSet rs) throws SQLException {
+    String tipoVeiculo = rs.getString("tipo_veiculo");
+    if ("CARRO".equals(tipoVeiculo)) {
+        Carro carro = new Carro();
+        carro.setId(rs.getLong("id"));
+        carro.setModelo(rs.getString("modelo"));
+        carro.setFabricante(rs.getString("fabricante"));
+        carro.setAno(rs.getInt("ano"));
+        carro.setCor(rs.getString("cor"));
+        carro.setPreco(rs.getDouble("preco"));
+        carro.setQuantPortas(rs.getInt("quantidade_portas"));
+        String tipoCombustivelStr = rs.getString("tipo_combustivel");
+        if (tipoCombustivelStr != null) {
+            carro.setTipCombustivel(TipoCombustivel.valueOf(tipoCombustivelStr));
+        }
+        return carro;
+    } else if ("MOTO".equals(tipoVeiculo)) {
+        Moto moto = new Moto();
+        moto.setId(rs.getLong("id"));
+        moto.setModelo(rs.getString("modelo"));
+        moto.setFabricante(rs.getString("fabricante"));
+        moto.setAno(rs.getInt("ano"));
+        moto.setCor(rs.getString("cor"));
+        moto.setPreco(rs.getDouble("preco"));
+        moto.setCilindradas(rs.getInt("cilindradas"));
+        return moto;
+    } else {
+        throw new SQLException("Tipo de veículo desconhecido: " + tipoVeiculo);
+    }
+}
+}
 
 
 
@@ -84,4 +141,4 @@ public class VeiculoDAOImpl implements VeiculoDAO {
     public List<Veiculo> consultar(String tipo, String modelo, String cor, Integer anoFabricacao) {
         return null;
     }try*/
-}
+

@@ -12,7 +12,7 @@ public interface VeiculoDAO {
 
 
     void excluirVeiculo(Long id) throws SQLException;
-
+    List<Veiculo> listarTodos() ;
 
    /* Veiculo buscarPorId(Long id);
 

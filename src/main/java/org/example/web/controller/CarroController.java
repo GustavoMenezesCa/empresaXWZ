@@ -50,11 +50,11 @@ public class CarroController {
 
 
 
-   /* @GetMapping("/consultar/todos")
+    @GetMapping("/consultar/todos")
     public ResponseEntity<List<Veiculo>> listarVeiculos(){
         List<Veiculo> listaVeiculos = veiculoService.listarVeiculosCadastrados();
         return ResponseEntity.status(HttpStatus.OK).body(listaVeiculos);
-    }*/
+    }
 
    @DeleteMapping("/excluir/{Id}")
     public ResponseEntity<Object> excluirVeiculo(@PathVariable(value = "Id") Long id){
