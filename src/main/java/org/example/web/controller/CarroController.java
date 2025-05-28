@@ -53,7 +53,7 @@ public class CarroController {
                                                   @RequestBody CarroCadastroForm carroCadastroForm){
 
         Carro carro = carroService.findByid(id);
-
+        System.out.println("oi");
         Carro carroSalvo = carroService.atualizarCarro(carro, carroCadastroForm);
         return ResponseEntity.status(HttpStatus.OK).body(carro);
     }
