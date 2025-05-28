@@ -14,15 +14,6 @@ public interface VeiculoDAO {
     void excluirVeiculo(Long id) throws SQLException;
     List<Veiculo> listarTodos();
     List<Veiculo> consultarVeiculoFiltrado(String tipo, String modelo, String cor, Integer ano);
-
-   /* Veiculo buscarPorId(Long id);
-
-    List<Veiculo> listarTodos();
-
-    Veiculo atualizar(Veiculo veiculo);
-
-    boolean excluir(Long id);
-
-    List<Veiculo> consultar(String tipo, String modelo, String cor, Integer anoFabricacao);*/
+    Optional<Veiculo> buscarPorIdGenerico(Long id);
 
 }

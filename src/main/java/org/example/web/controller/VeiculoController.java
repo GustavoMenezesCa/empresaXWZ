@@ -1,7 +1,9 @@
 package org.example.web.controller;
 
+import org.example.domain.Carro;
 import org.example.domain.Veiculo;
 import org.example.service.VeiculoService;
+import org.springframework.data.annotation.Id;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,8 +46,14 @@ public class VeiculoController {
         List<Veiculo> veiculosFiltrados = veiculoService.consultarVeiculos(tipoFiltro, modelo, cor, anoFiltro);
 
         return ResponseEntity.status(HttpStatus.OK).body(veiculosFiltrados);
-
     }
 
+    @GetMapping("/consultar/{id}")
+    public ResponseEntity<Veiculo> findById(@PathVariable(value = "id") Long id){
+
+        Veiculo veiculo = veiculoService.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(veiculo);
+
+    }
 
 }

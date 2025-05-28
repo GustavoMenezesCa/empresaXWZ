@@ -39,24 +39,15 @@ public class CarroController {
         return ResponseEntity.status(HttpStatus.OK).body(carro);
     }
 
-
-    @GetMapping("/consultar")
-    public ResponseEntity<List<Carro>> listarCarro(@RequestBody CarroUpdateForm carroUpdateForm) throws SQLException {
-
-        List<Carro> carro = carroService.listaCarroFiltrados(carroUpdateForm.modelo(), carroUpdateForm.cor(), carroUpdateForm.ano());
-        return ResponseEntity.status(HttpStatus.OK).body(carro);
-    }
-
-
     @PutMapping("/atualizarVeiculo/{id}")
     public ResponseEntity<Carro> atualizarVeiculo(@PathVariable(value = "id") Long id,
                                                   @RequestBody CarroCadastroForm carroCadastroForm){
 
         Carro carro = carroService.findByid(id);
-        System.out.println("oi");
         Carro carroSalvo = carroService.atualizarCarro(carro, carroCadastroForm);
         return ResponseEntity.status(HttpStatus.OK).body(carro);
     }
+
 }
 
 

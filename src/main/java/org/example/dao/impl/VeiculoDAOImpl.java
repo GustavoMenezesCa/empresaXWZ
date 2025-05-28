@@ -150,7 +150,6 @@ public class VeiculoDAOImpl implements VeiculoDAO {
             return veiculos;
         }
 
-
         public Optional<Veiculo> buscarPorIdGenerico(Long id) {
             String sql = SELECT_VEICULOS_SQL + " WHERE v.id = ?";
             try (Connection conn = getConnection();
@@ -169,57 +168,4 @@ public class VeiculoDAOImpl implements VeiculoDAO {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   /* @Override
-    public Veiculo salvar(Veiculo veiculo) {
-        return null;
-    }
-
-    @Override
-    public Veiculo buscarPorId(Long id) {
-        return null;
-    }
-
-    @Override
-    public List<Veiculo> listarTodos() {
-        return null;
-    }
-
-    @Override
-    public Veiculo atualizar(Veiculo veiculo) {
-        return null;
-    }
-
-    @Override
-    public boolean excluir(Long id) {
-        return false;
-    }*/
-
-    /*@Override
-    public List<Veiculo> consultar(String tipo, String modelo, String cor, Integer anoFabricacao) {
-        return null;
-    }try*/
 

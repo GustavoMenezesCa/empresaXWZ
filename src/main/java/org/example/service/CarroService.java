@@ -38,10 +38,7 @@ public class CarroService {
         }
     }
 
-    public List<Carro> listaCarroFiltrados(String modelo, String cor, Integer ano) throws SQLException {
-        List<Carro> list = carroDAO.consultarCarros(modelo, cor, ano);
-        return list;
-    }
+
 
 
     public Carro atualizarCarro(Carro carro, CarroCadastroForm carroCadastroForm){

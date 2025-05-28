@@ -37,16 +37,9 @@ public class VeiculoService {
         return veiculoDAO.consultarVeiculoFiltrado(tipo, modelo, cor, ano);
     }
 
-
-   /* public List<VeiculoResponse> consultarVeiculos(String tipo, String modelo, String cor, Integer ano) {
-        try {
-            List<Veiculo> veiculosConsultados = veiculoDAO.consultarComFiltros(tipo, modelo, cor, ano);
-            return VeiculoResponse.fromEntity(veiculosConsultados);
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao consultar veículos.", e);
-        }
-    }*/
+    public Veiculo findById(Long id){
+        return veiculoDAO.buscarPorIdGenerico(id).orElseThrow();
+    }
 
 }
 
