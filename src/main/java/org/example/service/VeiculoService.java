@@ -33,18 +33,10 @@ public class VeiculoService {
         return veiculoDAO.listarTodos();
     }
 
-    /*public List<VeiculoResponse> listarTodosVeiculosCadastrados() {
-        try {
-            List<Veiculo> listaVeiculos = veiculoDAO.listarTodos();
-            // Converter para DTOs de resposta
-            return listaVeiculos.stream()
-                    .map(this::listarTodosVeiculosCadastrados) // Reutilizar seu método de conversão
-                    .collect(Collectors.toList());
-        } catch (SQLException e) {
-            // Logar o erro
-            throw new RuntimeException("Erro ao listar todos os veículos.", e);
-        }
-    }*/
+    public List<Veiculo> consultarVeiculos(String tipo, String modelo, String cor, Integer ano) {
+        return veiculoDAO.consultarVeiculoFiltrado(tipo, modelo, cor, ano);
+    }
+
 
    /* public List<VeiculoResponse> consultarVeiculos(String tipo, String modelo, String cor, Integer ano) {
         try {

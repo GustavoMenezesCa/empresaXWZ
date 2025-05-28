@@ -94,7 +94,7 @@ public class MotoDAOImpl implements MotoDAO {
                 throw new SQLException("Nenhuma moto encontrada com o ID: " + moto.getId() + " para atualizar.");
             }
 
-            pstmtMoto = conn.prepareStatement("UPDATE MOTO SET cilindrada = ? WHERE veiculo_id = ?;");
+            pstmtMoto = conn.prepareStatement("UPDATE MOTO SET cilindrada = ? WHERE id_veiculo = ?;");
             pstmtMoto.setInt(1, moto.getCilindradas());
             pstmtMoto.setLong(2, moto.getId());
             pstmtMoto.executeUpdate();
@@ -116,7 +116,7 @@ public class MotoDAOImpl implements MotoDAO {
     public Optional<Moto> buscarPorId(Long id) {
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement("SELECT v.id, v.modelo, v.fabricante, v.ano, v.cor, v.preco, m.cilindrada " +
-                     "FROM VEICULO v JOIN MOTO m ON v.id = m.veiculo_id WHERE v.id = ? AND v.tipo_veiculo = 'MOTO';")) {
+                     "FROM VEICULO v JOIN MOTO m ON v.id = m.id_veiculo WHERE v.id = ? AND v.tipo_veiculo = 'MOTO';")) {
 
             pstmt.setLong(1, id);
             try (ResultSet rs = pstmt.executeQuery()) {

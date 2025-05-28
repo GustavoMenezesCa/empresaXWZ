@@ -38,8 +38,7 @@ public class MotoController {
         return ResponseEntity.status(HttpStatus.OK).body(moto);
     }
 
-
-
+    
 
     @DeleteMapping("/excluir/{id}")
     public ResponseEntity<Object> excluirVeiculo(@PathVariable(value = "id") Long id){
